@@ -26,7 +26,7 @@ module.exports.authMl = function (req, res ) {
 	    autorizarEnML(req.query.code, urlActual+'/auth_ml?cuenta_id='+cuenta_id, (req2, reso) => {
 	      if (!(validador.errorEnPeticion(req2, reso))) {
 	          cargarDatosDeUsuario(cuenta_id,reso);
-	          res.redirect('http://localhost/');
+	          res.redirect('http://multiml.com/');
 	       }
 	       else {
 	            res.json({success: false, msg: 'Hubo un problema con ML para registrar la cuenta. Por favor pruebe mas tarde'});
