@@ -1,2 +1,2 @@
 start:
-	docker build -t admin-notificaciones . && docker-compose up
+	docker build -t admin-notificaciones . && docker-compose up -d
