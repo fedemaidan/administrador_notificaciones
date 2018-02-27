@@ -7,6 +7,7 @@ RUN npm install mercadolibre
 RUN npm install cors
 RUN npm install needle
 RUN npm install mongoose
+RUN npm install node-cron
 
 COPY . .
 EXPOSE 8080
