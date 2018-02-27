@@ -6,7 +6,7 @@ var needle      = require('needle');
 var mongoose    = require('mongoose');
 var UserML      = require('../models/userML');
 var validador	= require('../utils/erroresEnPeticiones.js');
-var urlActual 	= "https://multiml"
+var urlActual 	= "https://multiml.xyz"
 
 mongoose.connect(config.database);
 
@@ -26,7 +26,7 @@ module.exports.authMl = function (req, res ) {
 	    autorizarEnML(req.query.code, urlActual+'/auth_ml?cuenta_id='+cuenta_id, (req2, reso) => {
 	      if (!(validador.errorEnPeticion(req2, reso))) {
 	          cargarDatosDeUsuario(cuenta_id,reso);
-	          res.redirect('http://multiml.com/');
+	          res.redirect('http://multiml.xyz/');
 	       }
 	       else {
 	            res.json({success: false, msg: 'Hubo un problema con ML para registrar la cuenta. Por favor pruebe mas tarde'});

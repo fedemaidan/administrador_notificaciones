@@ -51,7 +51,7 @@ function guardarDatosAccion(datos) {
 
 function ejecutarAccion(datos, cuenta_id) {
 
-	var url = "https://multiml:81/app_dev.php/reserva/new";
+	var url = "https://multiml/app_dev.php/reserva/new";
 	var moneda = datos.order_items[0].currency_id == "ARS" ? "PESOS" : "DOLARES";
 	var fecha_alta = datos.date_created.split('.',1)[0].replace('T',' ');
 
