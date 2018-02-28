@@ -7,7 +7,7 @@ var needle      = require('needle');
 var mongoose    = require('mongoose');
 var UserML      = require('./models/userML');
 var cron = require('node-cron');
-var client      = require('../config/mlClient'); 
+var client      = require('./config/mlClient'); 
 
 // Constants
 const PORT = 8080;
