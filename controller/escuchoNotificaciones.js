@@ -60,27 +60,30 @@ function ejecutarAccion(datos, cuenta_id) {
   var calle_entrega = datos.shipping.hasOwnProperty("receiver_address") ? datos.shipping.receiver_address.address_line : "";
   var codigo_postal_entrega = datos.shipping.hasOwnProperty("receiver_address") ? datos.shipping.receiver_address.zip_code : "";
 
-	for (var i = 0; i < datos.order_items[0].quantity; i++)
-	{
-		needle.post(url, {
-			      orden_ml_id: datos.id,
-            fecha_alta: fecha_alta,
-            productoNoCargado: datos.order_items[0].item.title,
-            moneda: moneda,
-            precio: datos.order_items[0].unit_price,
-            cuenta_id: cuenta_id,
-            nick_cliente: datos.buyer.nickname,
-            mail_cliente: datos.buyer.email,
-            nombre_cliente: datos.buyer.first_name+" "+datos.buyer.last_name,
-            telefono_cliente: datos.buyer.phone.area_code+ " "+datos.buyer.phone.number+" "+datos.buyer.phone.extension,
-            numero_documento_cliente: datos.buyer.billing_info.doc_number,
-            provincia_entrega: provincia_entrega,
-            localidad_entrega: localidad_entrega,
-            calle_entrega: calle_entrega,
-            codigo_postal_entrega: codigo_postal_entrega,
-        }, {
-        }, function (err, res, body) {
-        	console.log(body)
-        });
-	}
+  meliObject.get('items/'+datos.order_items.item.id, (req2, item) => { 
+  	for (var i = 0; i < datos.order_items[0].quantity; i++)
+  	{
+  		needle.post(url, {
+  			      orden_ml_id: datos.id,
+              fecha_alta: fecha_alta,
+              productoNoCargado: datos.order_items[0].item.title,
+              moneda: moneda,
+              precio: datos.order_items[0].unit_price,
+              cuenta_id: cuenta_id,
+              nick_cliente: datos.buyer.nickname,
+              mail_cliente: datos.buyer.email,
+              nombre_cliente: datos.buyer.first_name+" "+datos.buyer.last_name,
+              telefono_cliente: datos.buyer.phone.area_code+ " "+datos.buyer.phone.number+" "+datos.buyer.phone.extension,
+              numero_documento_cliente: datos.buyer.billing_info.doc_number,
+              provincia_entrega: provincia_entrega,
+              localidad_entrega: localidad_entrega,
+              calle_entrega: calle_entrega,
+              codigo_postal_entrega: codigo_postal_entrega,
+              link: item.permalink
+          }, {
+          }, function (err, res, body) {
+          	console.log(body)
+          });
+  	}
+  })
 }
