@@ -53,7 +53,7 @@ function ejecutarAccion(datos, cuenta_id) {
 
 	var url = "https://multiml.com/app_dev.php/reserva/new";
 	var moneda = datos.order_items[0].currency_id == "ARS" ? "PESOS" : "DOLARES";
-	var fecha_alta = datos.date_created.split('.',1)[0].replace('T',' ');
+	var fecha_alta = datos.date_closed.split('.',1)[0].replace('T',' ');
 
   var provincia_entrega = datos.shipping.hasOwnProperty("receiver_address") ? datos.shipping.receiver_address.state.name : "";
   var localidad_entrega = datos.shipping.hasOwnProperty("receiver_address") ? datos.shipping.receiver_address.city.name : "";
