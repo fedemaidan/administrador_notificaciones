@@ -7,7 +7,7 @@ var needle      = require('needle');
 var mongoose    = require('mongoose');
 var UserML      = require('./models/userML');
 var cron = require('node-cron');
-
+var client      = require('../config/mlClient'); 
 
 // Constants
 const PORT = 8080;
@@ -43,7 +43,7 @@ function refrescarToken() {
   UserML.find( { expiration_date: { $lt: date }}, (err, users) => {
     users.forEach( (user) => {
       
-        var url = 'https://api.mercadolibre.com/oauth/token?grant_type=refresh_token&client_id='+client_id+'&client_secret='+client_secret+'&refresh_token='+user.refresh_token
+        var url = 'https://api.mercadolibre.com/oauth/token?grant_type=refresh_token&client_id='+client.id+'&client_secret='+client.secret+'&refresh_token='+user.refresh_token
         needle.post(url, {}, {}, (req, res) => {
             
             var expiration_date = new Date(Date.now());
