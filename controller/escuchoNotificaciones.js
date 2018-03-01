@@ -82,7 +82,8 @@ function ejecutarAccion(datos, cuenta_id) {
               link: item.permalink
           }, {
           }, function (err, res, body) {
-          	console.log(body)
+          	if (err) console.log(err)
+              else console.log(body)
           });
   	}
   })
