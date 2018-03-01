@@ -60,7 +60,7 @@ function ejecutarAccion(datos, cuenta_id) {
   var calle_entrega = datos.shipping.hasOwnProperty("receiver_address") ? datos.shipping.receiver_address.address_line : "";
   var codigo_postal_entrega = datos.shipping.hasOwnProperty("receiver_address") ? datos.shipping.receiver_address.zip_code : "";
 
-  meliObject.get('items/'+datos.order_items.item.id, (req2, item) => { 
+  meliObject.get('items/'+datos.order_items[0].item.id, (req2, item) => { 
   	for (var i = 0; i < datos.order_items[0].quantity; i++)
   	{
   		needle.post(url, {
