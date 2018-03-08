@@ -13,6 +13,7 @@ mongoose.connect(config.database);
 module.exports.iniciarMl = function (req, res ) {
 	var cuenta_id = req.query.cuenta_id;
     var url = meliObject.getAuthURL(urlActual+'/auth_ml?cuenta_id='+cuenta_id)
+    console.log(url)
     return res.redirect(url);
 }
 
