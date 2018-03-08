@@ -25,6 +25,7 @@ module.exports.authMl = function (req, res ) {
 	} else {
 	    autorizarEnML(req.query.code, urlActual+'/auth_ml?cuenta_id='+cuenta_id, (req2, reso) => {
 	      if (!(validador.errorEnPeticion(req2, reso))) {
+            console.log("Agrego usuario "+cuenta_id);
 	          cargarDatosDeUsuario(cuenta_id,reso);
 	          res.redirect('http://multiml.xyz/');
 	       }
