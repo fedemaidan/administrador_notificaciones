@@ -1,6 +1,9 @@
 version: "2"
 services:
   app:
+    environment:
+    - USER=milito
+    - PASS=lautaro
     container_name: app
     image: admin-notificaciones
     restart: always
