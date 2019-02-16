@@ -6,7 +6,7 @@ var needle      = require('needle');
 var mongoose    = require('mongoose');
 var UserML      = require('../models/userML');
 var validador	= require('../utils/erroresEnPeticiones.js');
-var urlActual 	= "https://multiml.xyz"
+var urlActual 	= process.env.URL_ACTUAL;//"https://multiml.xyz"
 
 mongoose.connect(config.database);
 
