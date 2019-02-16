@@ -1,4 +1,4 @@
-var UserML      = require('../models/userML');'
+var UserML      = require('../models/userML');
 var client      = require('../config/mlClient');
 var needle      = require('needle');
 

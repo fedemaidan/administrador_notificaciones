@@ -5,7 +5,7 @@
   "author": "Federico Maidan <fede.maidan@gmail.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "express": "^4.16.1"
