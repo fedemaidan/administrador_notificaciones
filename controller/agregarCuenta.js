@@ -12,7 +12,8 @@ mongoose.connect(config.database);
 
 module.exports.iniciarMl = function (req, res ) {
 	var cuenta_id = req.query.cuenta_id;
-    var url = meliObject.getAuthURL(urlActual+'/auth_ml?cuenta_id='+cuenta_id)
+  var empresa = req.query.empresa;
+    var url = meliObject.getAuthURL(urlActual+'/auth_ml?cuenta_id='+cuenta_id+'&empresa='+empresa)
     console.log(url)
     return res.redirect(url);
 }
@@ -20,14 +21,15 @@ module.exports.iniciarMl = function (req, res ) {
 
 module.exports.authMl = function (req, res ) {
 	var cuenta_id = req.query.cuenta_id;
-    
+  var empresa = req.query.empresa;
+
     if (!cuenta_id ) {
 	    res.json({success: false, msg: 'Falta cargar usuario.'});
 	} else {
-	    autorizarEnML(req.query.code, urlActual+'/auth_ml?cuenta_id='+cuenta_id, (req2, reso) => {
+	    autorizarEnML(req.query.code, urlActual+'/auth_ml?cuenta_id='+cuenta_id+'&empresa='+empresa, (req2, reso) => {
 	      if (!(validador.errorEnPeticion(req2, reso))) {
             console.log("Agrego usuario "+cuenta_id);
-	          cargarDatosDeUsuario(cuenta_id,reso);
+	          cargarDatosDeUsuario(cuenta_id,reso, empresa);
 	          res.redirect('http://multiml.xyz/');
 	       }
 	       else {
@@ -53,7 +55,7 @@ function autorizarEnML(code, redirect_uri, callback) {
         });
     };
 
- function cargarDatosDeUsuario(id_cuenta, reso) {
+ function cargarDatosDeUsuario(id_cuenta, reso, empresa) {
  	
   meliObject.get('users/me?access_token='+reso.access_token, (req2, datos) => {
         if (!(validador.errorEnPeticion(req2, datos))) {
@@ -61,7 +63,8 @@ function autorizarEnML(code, redirect_uri, callback) {
           var expiration_date = new Date(Date.now());
           expiration_date = expiration_date.getTime() + (reso.expires_in * 1000);
     
-          var newUser = new UserML({  
+          var newUser = new UserML({
+              empresa: empresa,  
               id_cuenta: id_cuenta,
               id_ml: reso.user_id,
               token: reso.access_token,

@@ -6,7 +6,7 @@ services:
     - DB_PASS=lautaro
     - DB_URL=159.89.87.78:27017
     - ML_CLIENT_ID=EezWxXN7ip0Jd55Gvyp4Vn7xU0phnrxh
-    - ML_CLIENT_SECRET=159.89.87.78:27017
+    - ML_CLIENT_SECRET=EezWxXN7ip0Jd55Gvyp4Vn7xU0phnrxh
     - URL_ACTUAL=https://multiml.xyz
     container_name: app
     image: admin-notificaciones

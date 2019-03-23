@@ -38,7 +38,7 @@ function procesarAccion(req, res) {
       if (user) {
 			meliObject.get( req.body.resource, { access_token: user.token}, (request, datos ) => {
 				guardarDatosAccion(datos)
-				ejecutarAccion(datos, user.id_cuenta)
+				ejecutarAccion(datos, user.id_cuenta, empresa)
 			})
 		}
 	})
@@ -49,9 +49,12 @@ function guardarDatosAccion(datos) {
     accion.save()
 }
 
-function ejecutarAccion(datos, cuenta_id) {
-
-	var url = "https://multiml.com/app_dev.php/reserva/new";
+function ejecutarAccion(datos, cuenta_id, empresa) {
+  var url;
+  if (empresa == 'inova')
+	  url = "https://multiml.com/app_dev.php/reserva/new";
+  else if (empresa == 'youtec')
+    url = "https://clientesyoutec.com.ar/reserva/new";
 	var moneda = datos.order_items[0].currency_id == "ARS" ? "PESOS" : "DOLARES";
 	var fecha_alta = datos.date_closed.split('.',1)[0].replace('T',' ');
 
