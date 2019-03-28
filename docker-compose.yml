@@ -8,7 +8,7 @@ services:
     - ML_CLIENT_ID=3659532861516182
     - ML_CLIENT_SECRET=EezWxXN7ip0Jd55Gvyp4Vn7xU0phnrxh
     - URL_ACTUAL=https://notiml.com
-    - DB_NAME=youtec
+    - DB_NAME=mercadolibre
     container_name: app
     image: admin-notificaciones
     restart: always
