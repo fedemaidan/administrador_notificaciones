@@ -60,6 +60,7 @@ function autorizarEnML(code, redirect_uri, callback) {
   meliObject.get('users/me?access_token='+reso.access_token, (req2, datos) => {
         if (!(validador.errorEnPeticion(req2, datos))) {
           console.log(reso)
+          console.log(datos)
           var expiration_date = new Date(Date.now());
           expiration_date = expiration_date.getTime() + (reso.expires_in * 1000);
     
