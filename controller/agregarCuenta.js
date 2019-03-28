@@ -82,6 +82,7 @@ function autorizarEnML(code, redirect_uri, callback) {
     
             newUser.save(function(err) {
               if (err) {
+                console.log(err)
               	console.log("ERROR: usuario repetido")
                 return {success: false, msg: 'Username ya existe.'};
               }
