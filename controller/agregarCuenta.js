@@ -17,15 +17,16 @@ module.exports.iniciarMl = function (req, res ) {
   datos.cuenta_id = cuenta_id
   datos.empresa = empresa
   console.log(datos," datos")
-    var url = meliObject.getAuthURL(urlActual+'/auth_ml?cuenta_id='+cuenta_id+'&empresa='+empresa)
-    console.log(url)
-    return res.redirect(url);
+  var url = meliObject.getAuthURL(urlActual+'/auth_ml?datos='+datos)
+  console.log(url)
+  return res.redirect(url);
 }
 
 
 module.exports.authMl = function (req, res ) {
-	var cuenta_id = req.query.cuenta_id;
-  var empresa = req.query.empresa;
+  var datos = req.query.datos
+	var cuenta_id = datos.cuenta_id;
+  var empresa = datos.empresa;
   console.log("cuenta ",cuenta_id)
   console.log("empresa ",empresa)
 /*
