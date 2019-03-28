@@ -66,8 +66,8 @@ function autorizarEnML(code, redirect_uri, callback) {
  	
   meliObject.get('users/me?access_token='+reso.access_token, (req2, datos) => {
         if (!(validador.errorEnPeticion(req2, datos))) {
-          console.log(reso)
-          console.log(datos)
+          console.log(reso, " reso")
+          console.log(datos, " datos")
           var expiration_date = new Date(Date.now());
           expiration_date = expiration_date.getTime() + (reso.expires_in * 1000);
     
@@ -90,7 +90,7 @@ function autorizarEnML(code, redirect_uri, callback) {
     
             newUser.save(function(err) {
               if (err) {
-                console.log(err)
+                console.log(err, " error")
               	console.log("ERROR: usuario repetido")
                 return {success: false, msg: 'Username ya existe.'};
               }
