@@ -24,7 +24,7 @@ module.exports.iniciarMl = function (req, res ) {
 
 
 module.exports.authMl = function (req, res ) {
-  var datos = req.query.datos
+  var datos = JSON.parse(req.query.datos);
 	var cuenta_id = datos.cuenta_id;
   var empresa = datos.empresa;
   console.log("cuenta ",cuenta_id)
