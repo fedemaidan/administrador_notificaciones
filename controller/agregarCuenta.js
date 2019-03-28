@@ -29,7 +29,7 @@ module.exports.authMl = function (req, res ) {
   var empresa = datos.empresa;
   console.log("cuenta ",cuenta_id)
   console.log("empresa ",empresa)
-/*
+
     if (!cuenta_id ) {
 	    res.json({success: false, msg: 'Falta cargar usuario.'});
 	} else {
@@ -43,7 +43,7 @@ module.exports.authMl = function (req, res ) {
 	            res.json({success: false, msg: 'Hubo un problema con ML para registrar la cuenta. Por favor pruebe mas tarde'});
 	          }
 	    })
-	}*/
+	}
 }
 
 
