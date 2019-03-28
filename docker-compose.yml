@@ -7,7 +7,7 @@ services:
     - DB_URL=159.89.87.78:27017
     - ML_CLIENT_ID=3659532861516182
     - ML_CLIENT_SECRET=EezWxXN7ip0Jd55Gvyp4Vn7xU0phnrxh
-    - URL_ACTUAL=https://www.notiml.com
+    - URL_ACTUAL=https://notiml.com
     container_name: app
     image: admin-notificaciones
     restart: always
