@@ -17,7 +17,7 @@ module.exports.iniciarMl = function (req, res ) {
   datos.cuenta_id = cuenta_id
   datos.empresa = empresa
   console.log(datos," datos")
-  var url = meliObject.getAuthURL(urlActual+'/auth_ml?datos='+datos)
+  var url = meliObject.getAuthURL(urlActual+'/auth_ml?datos='+JSON.stringify(datos))
   console.log(url)
   return res.redirect(url);
 }
