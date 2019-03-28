@@ -2,10 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
  
 var UserMLSchema = new Schema({
-  empresa: {
-        type: String,
-        required: true
-    },
   id_cuenta: {
         type: String,
         required: true

@@ -6,38 +6,29 @@ var needle      = require('needle');
 var mongoose    = require('mongoose');
 var UserML      = require('../models/userML');
 var validador	= require('../utils/erroresEnPeticiones.js');
-var urlActual 	= process.env.URL_ACTUAL;//"https://multiml.xyz"
+var urlActual 	= process.env.URL_ACTUAL;
 
 mongoose.connect(config.database);
 
 module.exports.iniciarMl = function (req, res ) {
 	var cuenta_id = req.query.cuenta_id;
-  var empresa = req.query.empresa;
-  var datos = {}
-  datos.cuenta_id = cuenta_id
-  datos.empresa = empresa
-  console.log(datos," datos")
-  var url = meliObject.getAuthURL(urlActual+'/auth_ml?datos='+JSON.stringify(datos))
+  var url = meliObject.getAuthURL(urlActual+'/auth_ml?cuenta_id='+cuenta_id)
   console.log(url)
   return res.redirect(url);
 }
 
 
 module.exports.authMl = function (req, res ) {
-  var datos = JSON.parse(req.query.datos);
-	var cuenta_id = datos.cuenta_id;
-  var empresa = datos.empresa;
-  console.log("cuenta ",cuenta_id)
-  console.log("empresa ",empresa)
-
+  var cuenta_id = req.query.cuenta_id;
+  
     if (!cuenta_id ) {
 	    res.json({success: false, msg: 'Falta cargar usuario.'});
 	} else {
-	    autorizarEnML(req.query.code, urlActual+'/auth_ml?cuenta_id='+cuenta_id+'&empresa='+empresa, (req2, reso) => {
+	    autorizarEnML(req.query.code, urlActual+'/auth_ml?cuenta_id='+cuenta_id, (req2, reso) => {
 	      if (!(validador.errorEnPeticion(req2, reso))) {
             console.log("Agrego usuario "+cuenta_id);
-	          cargarDatosDeUsuario(cuenta_id,reso, empresa);
-	          res.redirect('http://notiml.com/');
+	          cargarDatosDeUsuario(cuenta_id,reso);
+	          res.redirect(urlActual);
 	       }
 	       else {
 	            res.json({success: false, msg: 'Hubo un problema con ML para registrar la cuenta. Por favor pruebe mas tarde'});
@@ -62,17 +53,14 @@ function autorizarEnML(code, redirect_uri, callback) {
         });
     };
 
- function cargarDatosDeUsuario(id_cuenta, reso, empresa) {
+ function cargarDatosDeUsuario(id_cuenta, reso) {
  	
   meliObject.get('users/me?access_token='+reso.access_token, (req2, datos) => {
         if (!(validador.errorEnPeticion(req2, datos))) {
-          console.log(reso, " reso")
-          console.log(datos, " datos")
           var expiration_date = new Date(Date.now());
           expiration_date = expiration_date.getTime() + (reso.expires_in * 1000);
     
           var newUser = new UserML({
-              empresa: empresa,  
               id_cuenta: id_cuenta,
               id_ml: reso.user_id,
               token: reso.access_token,
