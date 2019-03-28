@@ -22,7 +22,9 @@ module.exports.iniciarMl = function (req, res ) {
 module.exports.authMl = function (req, res ) {
 	var cuenta_id = req.query.cuenta_id;
   var empresa = req.query.empresa;
-
+  console.log("cuenta ",cuenta_id)
+  console.log("empresa ",empresa)
+/*
     if (!cuenta_id ) {
 	    res.json({success: false, msg: 'Falta cargar usuario.'});
 	} else {
@@ -36,7 +38,7 @@ module.exports.authMl = function (req, res ) {
 	            res.json({success: false, msg: 'Hubo un problema con ML para registrar la cuenta. Por favor pruebe mas tarde'});
 	          }
 	    })
-	}
+	}*/
 }
 
 
