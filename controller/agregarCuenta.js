@@ -30,7 +30,7 @@ module.exports.authMl = function (req, res ) {
 	      if (!(validador.errorEnPeticion(req2, reso))) {
             console.log("Agrego usuario "+cuenta_id);
 	          cargarDatosDeUsuario(cuenta_id,reso, empresa);
-	          res.redirect('http://multiml.xyz/');
+	          res.redirect('http://notiml.com/');
 	       }
 	       else {
 	            res.json({success: false, msg: 'Hubo un problema con ML para registrar la cuenta. Por favor pruebe mas tarde'});
