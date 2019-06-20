@@ -1,6 +1,6 @@
 version: "2"
 services:
-  app:
+  admin-notificaciones:
     environment:
     - DB_USER=milito
     - DB_PASS=lautaro
@@ -9,7 +9,7 @@ services:
     - ML_CLIENT_SECRET=EezWxXN7ip0Jd55Gvyp4Vn7xU0phnrxh
     - URL_ACTUAL=https://notiml.com
     - DB_NAME=mercadolibre
-    container_name: app
+    container_name: admin-notificaciones
     image: admin-notificaciones
     restart: always
     ports:
