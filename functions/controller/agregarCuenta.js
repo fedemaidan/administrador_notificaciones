@@ -78,12 +78,12 @@ function autorizarEnML(code, redirect_uri, callback) {
             newUser.save(function(err) {
               if (err) {
                 console.log(err, " error")
-                resRetorno.redirect(urlActual);
-                return {success: false, msg: 'Username ya existe.'};
+                //resRetorno.redirect(urlActual);
+                return resRetorno.json({success: false, msg: 'Username ya existe.'});
               }
               else {
-                resRetorno.redirect(urlActual);
-               	return {success: true, msg: 'Cuenta registrada con exito'};
+                //resRetorno.redirect(urlActual);
+               	return resRetorno.json({success: true, msg: 'Cuenta registrada con exito'});
               }
             })
         }
