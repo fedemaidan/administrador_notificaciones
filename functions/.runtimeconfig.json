@@ -1,0 +1,15 @@
+{
+  "ml": {
+    "client_id": "3768661395914657",
+    "client_secret": "6IYU8WPeqe37EbJCRyjrOHivvMEk7AHr"
+  },
+  "url": {
+    "actual": "http://localhost:5001/notiml/us-central1"
+  },
+  "db": {
+    "user": "milito",
+    "name": "mercadolibre",
+    "pass": "lautaro",
+    "url": "159.89.87.78:27017"
+  }
+}

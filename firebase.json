@@ -1,0 +1,9 @@
+{
+  "hosting": {
+    "public": "respondele-web",
+    "rewrites": [{
+    	"source": "**",
+    	"function": "app"
+    }]
+  }
+}

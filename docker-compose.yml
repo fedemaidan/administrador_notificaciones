@@ -14,3 +14,5 @@ services:
     restart: always
     ports:
       - "82:8080"
+      - "9005:9005"
+
